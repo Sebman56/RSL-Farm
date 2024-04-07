@@ -1,4 +1,4 @@
-#include <stdio.h>
+include <stdio.h>
 #include <stdlib.h>
 //#include <string.h>
 
@@ -10,6 +10,10 @@ int XPCumuleChampion;
 int XPTotalChampion;
 int XPMaxChampion;
 int XPManquantChampion;
+
+int EnergieAraignee20;
+int EnergieDragon20;
+int EnergieCampagne12_6;
 
 int i;
 
@@ -82,12 +86,13 @@ long Reponse()
     //printf("\n\tNombre total d XP: %i\n",XPTotalChampion);
 
     XPManquantChampion =XPMaxChampion -XPCumuleChampion;
-
+        
     NRoundAraignee20= (XPMaxChampion - XPCumuleChampion) / Araignee20;    //NombreRound = 
-
+        EnergieAraignee20= NRoundAraignee20 * 16;
     NRoundDragon20= (XPMaxChampion - XPCumuleChampion) / Dragon20;
-
+        EnergieDragon20 = NRoundDragon20 *16;
     NRoundCampagneBrutale12_6  = (XPMaxChampion - XPChampion) / CampagneBrutale12_6;
+        EnergieCampagne12_6 = NRoundCampagneBrutale12_6 *8;
 
     printf("\n\t*** %i *** XP cumulés du Champion.\n", XPCumuleChampion);
     //printf("\n\tXP du (%i étoiles) au (Level %i) : %i\n",SaisieEtoileChampion, SaisieLevelChampion,XPChampion);
@@ -102,9 +107,9 @@ int ResultatFarm ()
 {
     printf (" \n\t\t\t\t\t **** Resultat Farm ***.\n");
     // printf("\n\tXP Araignee-20 : %i\n",Araignee20);
-    printf("\n\t%i rounds Araignee-20 (%i XP) pour %i XP\n", NRoundAraignee20,Araignee20, XPManquantChampion);   
-    printf("\n\t%i rounds Dragon-20 (%i XP) avec %i XP.\n",NRoundDragon20 ,Dragon20, XPManquantChampion);
-    printf("\n\t%i rounds en Campagne brutale 12-6 (%i XP) avec %i XP.\n",NRoundCampagneBrutale12_6,CampagneBrutale12_6 ,XPManquantChampion);
+    printf("\n\tNécéssite %i d'Energie pour faire %i rounds Araignee-20 (%i XP).\n",EnergieAraignee20, NRoundAraignee20,Araignee20);   
+    printf("\n\tNécéssite %i d'Energie pour faire %i rounds Dragon-20 (%i XP).\n",EnergieDragon20 ,NRoundDragon20, Dragon20 );
+    printf("\n\tNécéssite %i d'Energie pour faire %i rounds en Campagne brutale 12-6 (%i XP).\n",EnergieCampagne12_6,NRoundCampagneBrutale12_6 ,CampagneBrutale12_6);
     //printf (" \n\t\t\t\t\t **** Fin Farm ***.\n\n");
 }
 
