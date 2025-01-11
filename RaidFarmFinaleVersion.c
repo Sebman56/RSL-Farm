@@ -11,14 +11,13 @@ int XPTotalChampion;
 int XPMaxChampion;
 int XPManquantChampion;
 
-int EnergieAraignee20;
-int EnergieDragon20;
-int EnergieCampagne12_6;
-
 int i;
 
 int Dragon20 = 5782 ;
 int NRoundDragon20;
+
+int AraigneeH3 =5999; 
+int NRoundAraigneeH3;
 
 int Araignee20 = 5800;
 int NRoundAraignee20;
@@ -27,6 +26,12 @@ int CampagneBrutale12_6= 8800;
 int NRoundCampagneBrutale12_6;
 
 int NombreRound ;
+
+long EnergieManquanteAraignee20;
+long EnergieManquanteDragon20;
+//long NRoundManquant12_3;
+long EnergieManquanteCampagne12_6;
+long EnergieManquanteAraigneeH3;
 
 /* **** Debut de tableau tableau afin connaitre le nombre XP par level **** */
 
@@ -81,19 +86,26 @@ for (i = 0; i < SaisieLevelChampion ; i++)
 
 long Reponse()
 {
-    printf (" \n\t\t\t\t\t *** Récapitulatif ***.");
-   // XPChampion = ChampionEtoilesXP[(SaisieEtoileChampion -1)][(SaisieLevelChampion -1)];
-    //printf("\n\tNombre total d XP: %i\n",XPTotalChampion);
+    printf (" \n\t\t\t\t\t *** Récapitulatif ***.\n");
+    
+    XPChampion = ChampionEtoilesXP[(SaisieEtoileChampion -1)][(SaisieLevelChampion -1)];
+    printf("\n\t %i XP du (%i étoiles) au (Level %i).\n",XPChampion,SaisieEtoileChampion, SaisieLevelChampion);
 
     XPManquantChampion =XPMaxChampion -XPCumuleChampion;
-        
-    NRoundAraignee20= (XPMaxChampion - XPCumuleChampion) / Araignee20;    //NombreRound = 
-        EnergieAraignee20= NRoundAraignee20 * 16;
-    NRoundDragon20= (XPMaxChampion - XPCumuleChampion) / Dragon20;
-        EnergieDragon20 = NRoundDragon20 *16;
-    NRoundCampagneBrutale12_6  = (XPMaxChampion - XPChampion) / CampagneBrutale12_6;
-        EnergieCampagne12_6 = NRoundCampagneBrutale12_6 *8;
 
+    NRoundAraignee20= XPManquantChampion / Araignee20;    //NombreRound = 
+        EnergieManquanteAraignee20= NRoundAraignee20 * 16;
+    
+    NRoundDragon20= XPManquantChampion / Dragon20;
+        EnergieManquanteDragon20= NRoundDragon20 * 16;
+
+    NRoundCampagneBrutale12_6  = XPManquantChampion / CampagneBrutale12_6;
+       EnergieManquanteCampagne12_6 = NRoundCampagneBrutale12_6 *8;
+       
+    NRoundAraigneeH3 = XPManquantChampion / AraigneeH3;
+        EnergieManquanteAraigneeH3 = NRoundAraigneeH3 *20;
+        
+  //NRoundManquant12_3 = XPManquantChampion / 8;
     printf("\n\t*** %i *** XP cumulés du Champion.\n", XPCumuleChampion);
     //printf("\n\tXP du (%i étoiles) au (Level %i) : %i\n",SaisieEtoileChampion, SaisieLevelChampion,XPChampion);
     printf("\n\tXP Maximum du %i étoiles : %i\n",SaisieEtoileChampion,XPMaxChampion);
@@ -102,16 +114,17 @@ long Reponse()
     return 0;
 }
 
-
-int ResultatFarm ()
+long ResultatFarm ()
 {
     printf (" \n\t\t\t\t\t **** Resultat Farm ***.\n");
-    // printf("\n\tXP Araignee-20 : %i\n",Araignee20);
-    printf("\n\tNécéssite %i d'Energie pour faire %i rounds Araignee-20 (%i XP).\n",EnergieAraignee20, NRoundAraignee20,Araignee20);   
-    printf("\n\tNécéssite %i d'Energie pour faire %i rounds Dragon-20 (%i XP).\n",EnergieDragon20 ,NRoundDragon20, Dragon20 );
-    printf("\n\tNécéssite %i d'Energie pour faire %i rounds en Campagne brutale 12-6 (%i XP).\n",EnergieCampagne12_6,NRoundCampagneBrutale12_6 ,CampagneBrutale12_6);
-    //printf (" \n\t\t\t\t\t **** Fin Farm ***.\n\n");
+    printf("\n\t Nécéssite %li Energies pour faire %i rounds Araignee-20 (%i XP) pour atteindre  %i XP, maximum d'un champion %i étoiles.\n",EnergieManquanteAraignee20, NRoundAraignee20,Araignee20, XPManquantChampion, SaisieEtoileChampion);   
+    printf("\n\t Nécéssite %li Energies pour faire %i rounds Dragon-20 (%i XP) pour atteindre  %i XP, maximum d'un champion %i étoiles.\n",EnergieManquanteDragon20, NRoundDragon20,Dragon20, XPManquantChampion, SaisieEtoileChampion);   
+    printf("\n\t Nécéssite %li Energies pour faire %i rounds Campagne 12-6 (%i XP) pour atteindre  %i XP, maximum d'un champion %i étoiles.\n",EnergieManquanteCampagne12_6, NRoundCampagneBrutale12_6,CampagneBrutale12_6, XPManquantChampion, SaisieEtoileChampion);
+    printf("\n\t Nécéssite %li Energies pour faire %i rounds Araignee-H3 (%i XP) pour atteindre  %i XP, maximum d'un champion %i étoiles.\n",EnergieManquanteAraigneeH3, NRoundAraigneeH3,AraigneeH3, XPManquantChampion, SaisieEtoileChampion);
+     
+    return 0;
 }
+
 
 /*** Fonction main() ************************************************************************************************* */
 int main()
